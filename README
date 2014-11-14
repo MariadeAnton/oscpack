@@ -10,6 +10,8 @@ Compatibility
 
 **OSX - Mac Os 10.10** : Working
 
+[Github Repo Link](https://github.com/MariadeAnton/oscpack-biicode)
+
 oscpack -- Open Sound Control packet manipulation library
 A simple C++ library for packing and unpacking OSC packets.
 http://www.rossbencina.com/code/oscpack
