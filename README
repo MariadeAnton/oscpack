@@ -4,11 +4,11 @@ Ross Bencina's Oscpack biicode block - a set of C++ classes for packing and unpa
 Compatibility
 -------------
 
-**Ubuntu 14.04 - Command Line**: No problems
+**Ubuntu 14.04 - Command Line**: Working
 
-**Windows - Visual Studio 10 and Command Line**: No problems.
+**Windows - Visual Studio 10 and MINGW Command Line**: Working
 
-**OSX** : yet to be tested.
+**OSX - Mac Os 10.10** : Working
 
 oscpack -- Open Sound Control packet manipulation library
 A simple C++ library for packing and unpacking OSC packets.
