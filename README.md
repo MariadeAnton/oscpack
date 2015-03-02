@@ -1,5 +1,5 @@
 
-# Ross Bencina's Oscpack biicode block - a set of C++ classes for packing and unpacking OSC packets.
+Ross Bencina's Oscpack biicode block - a set of C++ classes for packing and unpacking OSC packets.
 
 Compatibility
 -------------
