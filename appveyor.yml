@@ -28,7 +28,7 @@ build_script:
 
 test_script:
   - cmd: cd bin
-  - cmd: Maria_oscpack_tests_OscUnitTest.exe
+  - cmd: dir
 
 deploy_script:
   - cmd: bii user %block_user% -p %secured_passwd%
