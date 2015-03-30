@@ -44,6 +44,8 @@ on_success:
          git push neworigin "$env:APPVEYOR_REPO_BRANCH"
 
 environment:
+  block_user:
+    "Maria"
   block_name:
     "oscpack"
   secured_passwd:
