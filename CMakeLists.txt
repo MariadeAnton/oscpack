@@ -1,7 +1,5 @@
 IF(BIICODE)
   include(${CMAKE_HOME_DIRECTORY}/biicode.cmake)
-  # Initializes block variables
-  INIT_BIICODE_BLOCK()
 
   IF(WIN32)
   list(REMOVE_ITEM  BII_LIB_SRC ip/posix/NetworkingUtils.cpp ip/posix/UdpSocket.cpp)

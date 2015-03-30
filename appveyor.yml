@@ -15,17 +15,11 @@ install:
   - cmd: del cmake.zip
 
 before_build:
-  - cmd: cd \
-  - cmd: bii init %project_name%
-  - cmd: cd %project_name%
-  - cmd: bii new %block_user%/%block_name%
-    # copy files and folders
-  - cmd: xcopy "%APPVEYOR_BUILD_FOLDER%" blocks\%block_user%\%block_name%\ /e
-  - cmd: bii cpp:configure -G "Visual Studio 12"
+  - cmd: bii init -L
+  - cmd: bii configure -G "Visual Studio 12"
 
 build_script:
-  - cmd: bii cpp:build
-
+  - cmd: bii build
 test_script:
   - cmd: cd bin
   - cmd: dir
@@ -37,31 +31,19 @@ deploy_script:
   - if not defined APPVEYOR_REPO_TAG_NAME bii publish -r
 
 on_success:
-  - cmd: cd /%project_name%/blocks/%block_user%/%block_name%
   - ps: |
-        $new_biiconf = get-content biicode.conf
-        $orig_biiconf = get-content "$env:APPVEYOR_BUILD_FOLDER\biicode.conf"
-        if (diff $new_biiconf $orig_biiconf){
-           'different, updating biicode parents'
-           git checkout "$env:APPVEYOR_REPO_BRANCH"
-           git config --global core.autocrlf true
-           git config --global credential.helper store
-           Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
-           git remote add neworigin "$env:github_repo"
-           git config --global user.email "$env:github_email"
-           git config --global user.name "$env:github_user"
-           git add biicode.conf
-           git commit -m "Updated biicode parents [skip ci]"
-           git push neworigin "$env:APPVEYOR_REPO_BRANCH"
-           }Write-Host "Updated biicode parents" else {
-            'equal, no parents update needed'
-          }
+         git checkout "$env:APPVEYOR_REPO_BRANCH"
+         git config --global core.autocrlf true
+         git config --global credential.helper store
+         Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+         git remote add neworigin "$env:github_repo"
+         git config --global user.email "$env:github_email"
+         git config --global user.name "$env:github_user"
+         git add biicode.conf
+         git commit -m "Updated biicode parents [skip ci]"
+         git push neworigin "$env:APPVEYOR_REPO_BRANCH"
 
 environment:
-  project_name:
-    "myproject"
-  block_user:
-    "Maria"
   block_name:
     "oscpack"
   secured_passwd:
